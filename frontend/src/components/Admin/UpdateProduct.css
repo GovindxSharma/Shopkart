@@ -1,0 +1,13 @@
+/* Add this CSS in your styles or as a separate stylesheet */
+
+.oldImagesContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .oldImage {
+    max-width: 100px; /* Set the maximum width for old images */
+    max-height: 100px; /* Set the maximum height for old images */
+    margin: 5px; /* Add margin between images if needed */
+  }
+  

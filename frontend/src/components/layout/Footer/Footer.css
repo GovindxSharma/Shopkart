@@ -1,0 +1,23 @@
+.main-footer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(65, 52, 52);
+    align-items: center;
+    padding: 1rem 0;
+    gap: 0.5rem;
+    color: white;
+  }
+  .footer-links {
+    font-size: 1.75rem;
+    display: flex;
+    gap: 2rem;
+  }
+  .footer-text {
+    font-size: 0.9rem;
+  }
+  .icon{
+    color: white;
+  }
+  
+ 
