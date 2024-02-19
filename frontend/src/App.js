@@ -147,7 +147,7 @@ function App() {
 
         <Footer />
 
-        <ToastContainer />
+        <ToastContainer autoClose={3000} />
       </BrowserRouter>
       ;
     </>
