@@ -189,7 +189,7 @@ exports.updateUserRole=async(req,res,next)=>{
         email:req.body.email,
         role:req.body.role,
     }
-    console.log(req.body)
+    // console.log(req.body)
     const user=await User.findByIdAndUpdate(req.params.id,newUserData,{
         new:true,
         runValidators:true,

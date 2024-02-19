@@ -36,26 +36,26 @@ const NewProduct = () => {
     "Camera",
     "SmartPhones",
   ];
+useEffect(() => {
+  if (error) {
+    toast.error(error);
+    dispatch(clearErrors());
+  }
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
-  
-    if (success) {
-      toast.success("Product Created Successfully");
-      dispatch(createProductReset());
-      navigate("/admin/dashboard");
-      setImages([]);
-      setImagesPreview([]);
-      setName("");
-      setPrice(0);
-      setDescription("");
-      setCategory("");
-      setStock(0);
-    }
-  }, [dispatch, error, navigate, success]);
+  if (success) {
+    toast.success("Product Created Successfully");
+    dispatch(createProductReset());
+    navigate("/admin/dashboard");
+    setImages([]);
+    setImagesPreview([]);
+    setName("");
+    setPrice(0);
+    setDescription("");
+    setCategory("");
+    setStock(0);
+  }
+}, [dispatch, error, navigate, success]);
+
   
 
   const createProductSubmitHandler = (e) => {

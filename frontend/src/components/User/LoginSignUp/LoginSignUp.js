@@ -5,7 +5,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
-import { clearError,  login, register } from "../../../redux/reducers/user/userReducer.js";
+import { clearError,  clearMessages,  login, register } from "../../../redux/reducers/user/userReducer.js";
 import {  toast } from 'react-toastify';
 import Loader from "../../layout/Loader/Loader.jsx";
 import { useLocation } from 'react-router-dom';
@@ -56,8 +56,10 @@ const LoginSignUp = () => {
           if (!error) {
             toast.success(message);
             dispatch(clearError());
+            dispatch(clearMessages())
           } else {
             toast.error(message);
+            dispatch(clearMessages())
           }
         }
         if (isAuthenticated) {

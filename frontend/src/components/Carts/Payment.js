@@ -14,15 +14,15 @@ import {
 import { createOrder } from "../../redux/reducers/order/newOrder";
 import axios from "axios";
 import "./Payment.css";
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import EventIcon from '@mui/icons-material/Event';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import EventIcon from "@mui/icons-material/Event";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const stripe = useStripe();
@@ -30,16 +30,12 @@ const Payment = () => {
   const payBtn = useRef(null);
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user} = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
-
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
   };
- 
-
-
 
   const order = {
     shippingInfo,
@@ -49,10 +45,10 @@ const Payment = () => {
     shippingPrice: orderInfo.shippingCharges,
     totalPrice: orderInfo.totalPrice,
   };
-  console.log(order,'orderSrack')
+  console.log(order, "orderSrack");
 
-  console.log(cartItems,'c1')
-  console.log(cartItems.cartItems,'c2')
+  console.log(cartItems, "c1");
+  console.log(cartItems.cartItems, "c2");
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -70,7 +66,6 @@ const Payment = () => {
         paymentData,
         config
       );
-     
 
       const client_secret = data.client_secret;
 
@@ -120,7 +115,7 @@ const Payment = () => {
   useEffect(() => {
     if (error) {
       toast.error(error);
-    //   dispatch(clearErrors());
+      //   dispatch(clearErrors());
     }
   }, [dispatch, error]);
 
@@ -149,6 +144,12 @@ const Payment = () => {
             value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
             ref={payBtn}
             className="paymentFormBtn"
+          />
+          <input
+            type="submit"
+            value={`Card No: 4000 0035 6000 0008`}
+            ref={payBtn}
+            className="card"
           />
         </form>
       </div>

@@ -10,19 +10,25 @@ import SideBar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loader from "../layout/Loader/Loader";
-import { clearErrors, updateUser, updateUserReset, getUserDetails } from "../../redux/reducers/admin/adminAllUser";
+import {
+  clearErrors,
+  updateUser,
+  updateUserReset,
+  getUserDetails,
+} from "../../redux/reducers/admin/adminAllUser";
 
 const UpdateUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { loading, error, userDetails } = useSelector((state) => state.adminUsers);
+  const { loading, error, userDetails,isUpdated, } = useSelector(
+    (state) => state.adminUsers
+  );
 
   const {
     loading: updateLoading,
-    error: updateError,
-    isUpdated,
+    error: updateError
   } = useSelector((state) => state.profile);
 
   const [name, setName] = useState("");
@@ -33,41 +39,42 @@ const UpdateUser = () => {
     dispatch(getUserDetails(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (userDetails) {
-      setName(userDetails.name);
-      setEmail(userDetails.email);
-      setRole(userDetails.role);
-    }
+ useEffect(() => {
+   if (userDetails) {
+     setName(userDetails.name);
+     setEmail(userDetails.email);
+     setRole(userDetails.role);
+   }
 
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
+   if (error) {
+     toast.error(error);
+     dispatch(clearErrors());
+   }
 
-    if (updateError) {
-      toast.error(updateError);
-      dispatch(clearErrors());
-    }
+   if (updateError) {
+     toast.error(updateError);
+     dispatch(clearErrors());
+   }
 
-    if (isUpdated) {
-      dispatch(updateUserReset());
-      toast.success("User Updated Successfully");
-      navigate("/admin/dashboard");
-    }
-  }, [dispatch, error, isUpdated, updateError, userDetails, navigate]);
+   if (isUpdated ) {
+     dispatch(updateUserReset());
+     toast.success("User Updated Successfully");
+     navigate("/admin/dashboard");
+   }
+ }, [dispatch, error, isUpdated, updateError, userDetails,  navigate]);
 
-  const updateUserSubmitHandler = (e) => {
-    e.preventDefault();
 
-    const myForm = new FormData();
+const updateUserSubmitHandler = (e) => {
+  e.preventDefault();
 
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("role", role);
+  const myForm = new FormData();
 
-    dispatch(updateUser({ id, myForm }));
-  };
+  myForm.set("name", name);
+  myForm.set("email", email);
+  myForm.set("role", role);
+
+  dispatch(updateUser({ id, myForm }));
+};
 
   return (
     <Fragment>
@@ -78,7 +85,10 @@ const UpdateUser = () => {
           {loading ? (
             <Loader />
           ) : (
-            <form className="createProductForm" onSubmit={updateUserSubmitHandler}>
+            <form
+              className="createProductForm"
+              onSubmit={updateUserSubmitHandler}
+            >
               <h1>Update User</h1>
 
               <div>
@@ -114,7 +124,9 @@ const UpdateUser = () => {
               <Button
                 id="createProductBtn"
                 type="submit"
-                disabled={updateLoading ? true : false || role === "" ? true : false}
+                disabled={
+                  updateLoading ? true : false || role === "" ? true : false
+                }
               >
                 Update
               </Button>

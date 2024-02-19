@@ -34,12 +34,8 @@ export const deleteProduct = createAsyncThunk("deleteProduct", async (id) => {
 // Update Product
 export const updateProduct = createAsyncThunk("updateProduct", async ({ id, productData }, { dispatch }) => {
   try {
-    console.log('Updating product with id:', id);
-    console.log('Product data:', productData);
 
     const response = await axios.put(` /api/v1/admin/product/${id}`, productData);
-
-    console.log('Update response:', response.data);
 
     dispatch(adminProductSlice.actions.updateProductSuccess(response.data));
 
