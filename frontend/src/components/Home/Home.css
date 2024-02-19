@@ -47,6 +47,11 @@
   max-width: 100%;
 } */
 
+.card-image{
+  height: 350px;
+  /* height: 200px; */
+}
+
 .homeHeading {
   text-align: center;
   font-family: Roboto;
@@ -129,6 +134,10 @@
   .productCard > span {
     font-size: 1.5vmax;
   }
+ .card-image{
+  /* height: 350px; */
+  height: 200px;
+}
 
   .productCard > div > span {
     margin: 0 0.5vmax;

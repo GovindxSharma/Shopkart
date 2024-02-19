@@ -3,7 +3,7 @@ import axios from 'axios';
 // import { API_URL } from '../../BaseUrl';
 // axios.defaults.withCredentials = true;
 
-export const fetchProducts = createAsyncThunk("fetchProducts", async ({ keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0 }) => {
+export const fetchProducts = createAsyncThunk("fetchProducts", async ({ keyword = "", currentPage = 1, price = [0, 250000], category, ratings = 0 }) => {
   let link = ` /api/v1/products?page=${currentPage}&keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
   if (category) {
     link = ` /api/v1/products?page=${currentPage}&keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
